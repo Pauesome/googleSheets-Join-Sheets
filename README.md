@@ -17,9 +17,8 @@ El script que encontrarás en este repositorio tiene como objetivo juntar el nú
 3. Haz clic en "Herramientas" en la barra de navegación y selecciona "Editor de secuencia de comandos".
 4. Selecciona "Nuevo" para crear un nuevo script.
 5. Copia y pega el contenido del script en el editor.
-6. Guarda el script y cierra el editor.
-7. Ejecuta el script haciendo clic en el botón de "play" ▶️.
-8. ¡El script combinará las hojas siguiendo las indicaciones de la Fila 2, 3 y 4!
+6. Guarda el script y dale a Run
+7. ¡El script combinará las hojas siguiendo las indicaciones!
 
 ## Nota
 
