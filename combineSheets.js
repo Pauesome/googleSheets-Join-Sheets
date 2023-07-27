@@ -1,9 +1,9 @@
 function combinarFilas() {
-  var hojas = ["RAW TY UA", "RAW TY GA4"];
-  var headers = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("RAW TY UA").getRange(1, 1, 1, 7).getValues()[0];
-  var combinedSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("RAW TY Merged (Definitivo)");
+  var hojas = ["Insert sheet name", "Insert sheet name 2", "Insert sheet name 3"];
+  var headers = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Insert headers sheet name").getRange(1, 1, 1, 7).getValues()[0];
+  var combinedSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Insert JOIN sheet name");
   if (!combinedSheet) {
-      combinedSheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet("RAW TY Merged (Definitivo)");
+      combinedSheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet("Insert JOIN sheet name");
   }
   combinedSheet.getRange(1, 1, 1, 7).setValues([headers]);
   var data = [];
