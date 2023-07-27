@@ -25,6 +25,4 @@ El script que encontrarás en este repositorio tiene como objetivo juntar el nú
 
 Asegúrate de haber configurado correctamente el entorno de Google Sheets y de tener los permisos necesarios para ejecutar secuencias de comandos en tu hoja de cálculo.
 
-¡Esperamos que este script te sea útil para tus necesidades de combinación de datos en Google Sheets! Si tienes alguna pregunta o problema, no dudes en abrir un problema o contactarnos.
-
-Happy coding! 🚀
+¡Espero que este script te sea útil! Si tienes alguna pregunta o problema, no dudes en abrir un problema o contactarme.
