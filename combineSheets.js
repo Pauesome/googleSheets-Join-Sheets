@@ -1,19 +1,45 @@
-function combinarFilas() {
-  var hojas = ["Insert sheet name", "Insert sheet name 2", "Insert sheet name 3"];
-  var headers = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Insert headers sheet name").getRange(1, 1, 1, 7).getValues()[0];
-  var combinedSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Insert JOIN sheet name");
+function rowCombinator() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  // Hojas de origen
+  var hojas = ["Google Ads", "Meta Ads"];
+  // Hoja de destino
+  var combinedSheet = ss.getSheetByName("All Ads");
   if (!combinedSheet) {
-      combinedSheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet("Insert JOIN sheet name");
+    combinedSheet = ss.insertSheet("All Ads");
   }
-  combinedSheet.getRange(1, 1, 1, 7).setValues([headers]);
+  // Copiamos cabeceras de la primera hoja
+  var headers = ss.getSheetByName("Google Ads")
+    .getRange(1, 1, 1, 6).getValues()[0];
+  // Limpiamos datos anteriores
+  combinedSheet.clear();
+  combinedSheet.getRange(1, 1, 1, headers.length).setValues([headers]);
   var data = [];
-  for (var i = 0; i < hojas.length; i++) {
-      var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(hojas[i]);
-      var values = sheet.getRange(2, 1, sheet.getLastRow() - 1, 7).getValues();
-      data = data.concat(values);
-  }
-  var filteredData = data.filter(function (row) {
-      return row[5] !== '';
+  // Iteramos por cada hoja de origen
+  hojas.forEach(function(hoja) {
+    var sheet = ss.getSheetByName(hoja);
+    if (sheet) {
+      var lastRow = sheet.getLastRow();
+      if (lastRow > 1) {
+        var values = sheet.getRange(2, 1, lastRow - 1, 6).getValues();
+        // Convertir columna 1 (Campaña) a MAYÚSCULAS
+        for (var i = 0; i < values.length; i++) {
+          if (values[i][0]) {
+            values[i][0] = String(values[i][0]).trim().toUpperCase();
+          }
+        }
+        data = data.concat(values);
+      }
+    }
   });
-  combinedSheet.getRange(2, 1, filteredData.length, 7).setValues(filteredData);
+  // Filtra filas con valor en columna 6 (métrica clave)
+  var filteredData = data.filter(function(row) {
+    return row[5] !== '';
+  });
+  // Escribe datos combinados
+  if (filteredData.length > 0) {
+    combinedSheet.getRange(2, 1, filteredData.length, headers.length)
+      .setValues(filteredData);
+  }
+  Logger.log(filteredData.length + " filas combinadas.");
 }
+
